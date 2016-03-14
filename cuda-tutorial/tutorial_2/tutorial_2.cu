@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <stdio.h>
 
 #define N 500000
 
@@ -10,6 +11,9 @@ void add_kernel(int *a, int *b, int *c) {
     // running
     // blockIdx can be defined in 2 dim
     int i = blockIdx.x;  // built in variables defined by cuda
+
+    printf("Index: %d\n", i);
+    
     if (i < N) {
         c[i] = a[i] + b[i];
     }
@@ -19,6 +23,8 @@ __host__
 void add_cpu(int *a, int *b, int *c) {
     for (int i = 0; i < N; i++) {
         c[i] = a[i] + b[i];
+
+        printf("%d\n", c[i]);
     }
 
 }
